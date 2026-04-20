@@ -9,4 +9,4 @@ labels:
 images:
   - name: registry.144.91.77.245.sslip.io/vibevoice
     newName: registry.144.91.77.245.sslip.io/vibevoice
-    newTag: d84b9bf0337a66515aa7ae70ba3c41c73ad1da3d
+    newTag: 0cd4fa1c7df5417442510c1af3eca2b8e55d535e
