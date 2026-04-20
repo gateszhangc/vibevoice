@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vibevoice-www
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: www.vibevoice.lol
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vibevoice
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - www.vibevoice.lol
+      secretName: vibevoice-www-tls
+

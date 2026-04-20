@@ -6,9 +6,9 @@ resources:
   - configmap.yaml
   - deployment.yaml
   - service.yaml
-  - ingress.yaml
+  - ingress-apex.yaml
+  - ingress-www.yaml
 images:
   - name: registry.144.91.77.245.sslip.io/vibevoice
     newName: registry.144.91.77.245.sslip.io/vibevoice
     newTag: latest
-
