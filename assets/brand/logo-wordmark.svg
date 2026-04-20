@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 280" fill="none">
+  <defs>
+    <linearGradient id="wordmark-bg" x1="64" y1="26" x2="1110" y2="248" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071127"/>
+      <stop offset="1" stop-color="#050816"/>
+    </linearGradient>
+    <linearGradient id="wordmark-text" x1="330" y1="62" x2="1018" y2="224" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6FAFF"/>
+      <stop offset=".54" stop-color="#C5F6FF"/>
+      <stop offset="1" stop-color="#A0ACFF"/>
+    </linearGradient>
+    <linearGradient id="wordmark-cyan" x1="88" y1="61" x2="254" y2="222" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#91F9FF"/>
+      <stop offset="1" stop-color="#2FD4E4"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="1160" height="260" rx="46" fill="url(#wordmark-bg)"/>
+  <rect x="10" y="10" width="1160" height="260" rx="46" stroke="#79EFFF" stroke-opacity=".14"/>
+  <g transform="translate(42 36)">
+    <rect x="0" y="0" width="208" height="208" rx="58" fill="#0B1630" stroke="#79EFFF" stroke-opacity=".18"/>
+    <circle cx="92" cy="104" r="54" stroke="url(#wordmark-cyan)" stroke-width="14"/>
+    <circle cx="92" cy="104" r="32" stroke="#243A65" stroke-width="10"/>
+    <circle cx="92" cy="104" r="10" fill="#9AFAFF"/>
+    <rect x="142" y="50" width="12" height="112" rx="6" fill="#FFD87F"/>
+    <rect x="164" y="34" width="12" height="144" rx="6" fill="#93FBFF"/>
+    <path d="M44 104C44 77.49 65.49 56 92 56" stroke="#A6FCFF" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 104C44 130.51 65.49 152 92 152" stroke="#6BE6FF" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g fill="url(#wordmark-text)" font-family="'Avenir Next Condensed','Helvetica Neue',Arial,sans-serif">
+    <text x="304" y="142" font-size="108" font-weight="700" letter-spacing="4">VibeVoice</text>
+    <text x="310" y="192" font-size="26" font-weight="600" letter-spacing="11" opacity=".78">OPEN-SOURCE FRONTIER VOICE AI</text>
+  </g>
+</svg>

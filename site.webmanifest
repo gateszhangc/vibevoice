@@ -1,11 +1,11 @@
 {
-  "name": "Artemis II Wallpaper",
-  "short_name": "Artemis II",
-  "description": "Independent editorial collection of Artemis II wallpapers using publicly released NASA imagery with source credit.",
+  "name": "VibeVoice",
+  "short_name": "VibeVoice",
+  "description": "Open-source frontier voice AI overview site",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#050912",
-  "theme_color": "#050912",
+  "background_color": "#050816",
+  "theme_color": "#050816",
   "icons": [
     {
       "src": "/assets/brand/favicon.png",
@@ -14,7 +14,7 @@
     },
     {
       "src": "/assets/brand/apple-touch-icon.png",
-      "sizes": "180x180",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]

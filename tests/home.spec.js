@@ -1,36 +1,63 @@
 const { test, expect } = require("@playwright/test");
 
-test.describe("Artemis II wallpaper site", () => {
-  test("desktop homepage renders key content and filters wallpapers", async ({ page }) => {
+test.describe("VibeVoice site", () => {
+  test("desktop homepage renders primary content and resources", async ({ page }) => {
     await page.goto("/");
 
-    await expect(page).toHaveTitle(/Artemis II Wallpaper/i);
-    await expect(page.locator("h1")).toHaveText("Artemis II Wallpaper");
-    await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /publicly released NASA mission imagery/i);
-    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://artemis-2-wallpaper.lol/");
+    await expect(page).toHaveTitle(/VibeVoice ASR & Realtime TTS \| Open-Source Voice AI/i);
+    await expect(page.locator("h1")).toHaveText("VibeVoice ASR and realtime TTS in one open-source voice AI overview.");
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /VibeVoice ASR, VibeVoice Realtime/i);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://vibevoice.lol/");
+    await expect(page.locator('meta[property="og:site_name"]')).toHaveAttribute("content", "VibeVoice");
+    await expect(page.getByText("Independent editorial guide to the public VibeVoice release materials")).toBeVisible();
 
-    const wallpaperCards = page.locator(".wallpaper-card");
-    await expect(wallpaperCards).toHaveCount(10);
-    await expect(page.getByText("Not an official NASA website.")).toBeVisible();
+    await expect(page.getByRole("link", { name: "Try ASR Playground" })).toHaveAttribute("href", "https://aka.ms/vibevoice-asr");
+    await expect(page.getByRole("link", { name: "View on GitHub" })).toHaveAttribute("href", "https://github.com/microsoft/VibeVoice");
 
-    await page.getByRole("button", { name: "Posters" }).click();
-    await expect(page.locator(".wallpaper-card:not([hidden])")).toHaveCount(2);
-    await expect(page.locator("[data-results-count]")).toHaveText("Showing 2 wallpapers");
+    const modelCards = page.locator("[data-model-card]");
+    await expect(modelCards).toHaveCount(3);
+    await expect(modelCards.nth(0).getByText("VibeVoice-ASR-7B", { exact: true })).toBeVisible();
+    await expect(modelCards.nth(1).getByText("VibeVoice-Realtime-0.5B", { exact: true })).toBeVisible();
+    await expect(modelCards.nth(2).getByText("VibeVoice-TTS-1.5B", { exact: true })).toBeVisible();
+    await expect(page.getByText("Research notice: synthetic speech systems can be misused")).toBeVisible();
 
-    await page.getByRole("button", { name: "All" }).click();
-    await expect(page.locator(".wallpaper-card:not([hidden])")).toHaveCount(10);
+    const ogCard = await page.request.get("/assets/brand/og-card.png");
+    expect(ogCard.ok()).toBe(true);
 
-    for (const image of await page.locator("img").all()) {
-      await image.scrollIntoViewIfNeeded();
-    }
+    const favicon = await page.request.get("/assets/brand/favicon.png");
+    expect(favicon.ok()).toBe(true);
 
-    const imagesLoaded = await page.evaluate(() =>
+    const appleTouch = await page.request.get("/assets/brand/apple-touch-icon.png");
+    expect(appleTouch.ok()).toBe(true);
+
+    const healthz = await page.request.get("/healthz");
+    expect(healthz.ok()).toBe(true);
+    await expect(healthz.json()).resolves.toEqual({ ok: true });
+
+    const appConfig = await page.request.get("/app-config.js");
+    expect(appConfig.ok()).toBe(true);
+    const appConfigText = await appConfig.text();
+    expect(appConfigText).toMatch(/window\.__SITE_CONFIG__ = \{/);
+    expect(appConfigText).toMatch(/siteUrl: "https:\/\/vibevoice\.lol"/);
+    expect(appConfigText).toMatch(/gaMeasurementId: ""/);
+
+    const schemaTypes = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+      nodes
+        .map((node) => JSON.parse(node.textContent || "{}"))
+        .map((payload) => payload["@type"])
+    );
+    expect(schemaTypes).toEqual(expect.arrayContaining(["WebSite", "CollectionPage", "ItemList", "FAQPage"]));
+
+    const loadedImages = await page.evaluate(() =>
       Array.from(document.images).every((image) => image.complete && image.naturalWidth > 0)
     );
-    expect(imagesLoaded).toBe(true);
+    expect(loadedImages).toBe(true);
+
+    await expect(page.locator('script[src*="googletagmanager.com"]')).toHaveCount(0);
+    await expect(page.locator('script[src*="clarity.ms"]')).toHaveCount(0);
   });
 
-  test("mobile layout stays within viewport and keeps gallery accessible", async ({ browser }) => {
+  test("mobile layout keeps navigation and content within viewport", async ({ browser }) => {
     const context = await browser.newContext({
       viewport: { width: 390, height: 844 },
       isMobile: true
@@ -40,16 +67,16 @@ test.describe("Artemis II wallpaper site", () => {
     await page.goto("/");
 
     await expect(page.locator("h1")).toBeVisible();
-    await expect(page.getByRole("link", { name: "Explore the Collection" })).toBeVisible();
-    await page.getByRole("link", { name: "Explore the Collection" }).click();
-    await expect(page.locator("#gallery")).toBeInViewport();
+    await expect(page.getByRole("button", { name: "Menu" })).toBeVisible();
+    await page.getByRole("button", { name: "Menu" }).click();
+    await expect(page.getByRole("link", { name: "Capabilities" })).toBeVisible();
+    await page.getByRole("link", { name: "Capabilities" }).click();
+    await expect(page.locator("#capabilities")).toBeInViewport();
+    await expect(page.locator("[data-model-card]")).toHaveCount(3);
 
-    const overflow = await page.evaluate(() => {
-      return document.documentElement.scrollWidth - window.innerWidth;
-    });
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow).toBeLessThanOrEqual(1);
 
-    await expect(page.locator(".wallpaper-card")).toHaveCount(10);
     await context.close();
   });
 });

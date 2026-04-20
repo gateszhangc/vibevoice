@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vibevoice-site-config
+data:
+  SITE_URL: https://vibevoice.lol
+  CANONICAL_HOST: vibevoice.lol
+  GA_MEASUREMENT_ID: ""
+  CLARITY_PROJECT_ID: ""
+

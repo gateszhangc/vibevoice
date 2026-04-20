@@ -1,0 +1,11 @@
+# Resonant Vector
+
+Resonant Vector treats sound as architecture rather than decoration. Space is built from measured pulses, orbital rings, and disciplined interruption, so the composition feels as if voice has been translated into a navigable field. The work should appear meticulously crafted, as though every interval, offset, and alignment was reviewed by someone with deep expertise and the patience to refine it for countless hours. Nothing should feel spontaneous in the careless sense; the energy comes from precision, not clutter.
+
+Color should carry the temperature of a midnight control room: near-black foundations, cool electric cyan, restrained amber, and rare violet voltages. These accents must be used with painstaking attention so they feel calibrated instead of sprinkled. The final object should read like master-level execution, with glow used as signal and not as spectacle. Every bright edge must earn its place through contrast, restraint, and material control.
+
+Form should oscillate between clean engineering and lyrical resonance. Concentric circles, vertical meters, clipped lines, and tightly repeated modules create the sense that invisible phenomena are being mapped by a patient observer. The repetition must look labored over with care, never auto-generated, as if the designer spent hours tuning rhythm until each mark reinforced the whole. Sparse typography belongs inside this system as a structural element, not as a paragraph engine.
+
+Scale and hierarchy should create a decisive reading path: one commanding gesture, one secondary field of evidence, then smaller technical notes. Negative space is not absence here; it is the pressure chamber that makes the bright details feel credible. The composition should look pristine and deeply edited, with every margin and proportion demonstrating top-tier craft. Even the smallest labels should appear intentional enough to survive museum-scale scrutiny.
+
+The finished artifacts should feel like evidence from an imaginary audio discipline: exacting, elegant, and quietly charged with motion. Minimal words, repeated forms, and hard-won balance should make the visuals feel like the product of deep expertise. The overall impression must be that of something painstakingly refined by a specialist who understands when to stop, when to sharpen, and how to let silence carry meaning.

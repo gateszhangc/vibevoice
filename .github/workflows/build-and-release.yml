@@ -4,19 +4,20 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - deploy/k8s/overlays/prod/kustomization.yaml
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: artemis-2-wallpaper-release
+  group: vibevoice-release
   cancel-in-progress: true
 
 env:
-  IMAGE_NAME: registry.144.91.77.245.sslip.io/dokploy-fleet-artemis-2-wallpaper-artemis-2-wallpaper
-  FLEET_REPO: gateszhangc/k8s-fleet
-  FLEET_TENANT_PATH: tenants/artemis-2-wallpaper/20-artemis-2-wallpaper-deployment.yaml
+  IMAGE_NAME: registry.144.91.77.245.sslip.io/vibevoice
+  KUSTOMIZATION_PATH: deploy/k8s/overlays/prod/kustomization.yaml
 
 jobs:
   build-and-push:
@@ -49,18 +50,16 @@ jobs:
           push: true
           tags: ${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.image_tag }}
 
-  update-fleet:
+  update-kustomization:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-      - name: Check out fleet repo
+      - name: Check out code
         uses: actions/checkout@v4
         with:
-          repository: ${{ env.FLEET_REPO }}
-          token: ${{ secrets.FLEET_REPO_PAT }}
-          path: k8s-fleet
+          fetch-depth: 0
 
-      - name: Update deployment image tag
+      - name: Update production image tag
         env:
           IMAGE_TAG: ${{ needs.build-and-push.outputs.image_tag }}
         run: |
@@ -69,30 +68,30 @@ jobs:
           import re
           from pathlib import Path
 
-          path = Path("k8s-fleet") / os.environ["FLEET_TENANT_PATH"]
+          path = Path(os.environ["KUSTOMIZATION_PATH"])
           content = path.read_text()
           updated, count = re.subn(
-              r"(^\s*image:\s*registry\.144\.91\.77\.245\.sslip\.io/dokploy-fleet-artemis-2-wallpaper-artemis-2-wallpaper:).*$",
+              r"(^\s*newTag:\s*).*$",
               rf"\1{os.environ['IMAGE_TAG']}",
               content,
               count=1,
               flags=re.MULTILINE,
           )
           if count != 1:
-              raise SystemExit("Expected exactly one image line to update in the fleet deployment manifest.")
+              raise SystemExit("Expected exactly one newTag line to update.")
           path.write_text(updated)
           PY
 
-      - name: Commit fleet update
+      - name: Commit manifest update
         env:
           IMAGE_TAG: ${{ needs.build-and-push.outputs.image_tag }}
         run: |
-          cd k8s-fleet
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$FLEET_TENANT_PATH"
+          git add "$KUSTOMIZATION_PATH"
           if git diff --cached --quiet; then
             exit 0
           fi
-          git commit -m "chore: release artemis-2-wallpaper ${IMAGE_TAG}"
+          git commit -m "chore: release vibevoice ${IMAGE_TAG}"
           git push origin HEAD:main
+

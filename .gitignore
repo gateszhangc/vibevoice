@@ -2,4 +2,3 @@ node_modules/
 playwright-report/
 test-results/
 .DS_Store
-scripts/__pycache__/

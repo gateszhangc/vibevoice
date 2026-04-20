@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="og-bg" x1="116" y1="72" x2="1046" y2="534" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#091227"/>
+      <stop offset=".48" stop-color="#060A18"/>
+      <stop offset="1" stop-color="#0A1731"/>
+    </linearGradient>
+    <radialGradient id="og-glow-a" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(185 92) rotate(42.7727) scale(460.327 366.748)">
+      <stop stop-color="#74EDFF" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#74EDFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="og-glow-b" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1018 450) rotate(157.463) scale(427.564 281.509)">
+      <stop stop-color="#92A0FF" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#92A0FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="og-cyan" x1="121" y1="108" x2="365" y2="396" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A9FCFF"/>
+      <stop offset="1" stop-color="#30D4E3"/>
+    </linearGradient>
+    <linearGradient id="og-text" x1="442" y1="173" x2="973" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FCFEFF"/>
+      <stop offset=".5" stop-color="#D2F8FF"/>
+      <stop offset="1" stop-color="#B0BDFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="56" fill="url(#og-bg)"/>
+  <rect width="1200" height="630" rx="56" stroke="#7AEEFF" stroke-opacity=".16" stroke-width="2"/>
+  <circle cx="164" cy="96" r="260" fill="url(#og-glow-a)"/>
+  <circle cx="1006" cy="450" r="270" fill="url(#og-glow-b)"/>
+  <path d="M0 420H1200" stroke="#7AEEFF" stroke-opacity=".08"/>
+  <path d="M0 472H1200" stroke="#7AEEFF" stroke-opacity=".06"/>
+  <path d="M0 524H1200" stroke="#7AEEFF" stroke-opacity=".05"/>
+  <path d="M356 0V630" stroke="#7AEEFF" stroke-opacity=".08"/>
+  <g transform="translate(72 104)">
+    <rect x="0" y="0" width="246" height="246" rx="70" fill="#0B1630" stroke="#79EFFF" stroke-opacity=".18"/>
+    <circle cx="108" cy="123" r="62" stroke="url(#og-cyan)" stroke-width="18"/>
+    <circle cx="108" cy="123" r="38" stroke="#243A65" stroke-width="12"/>
+    <circle cx="108" cy="123" r="13" fill="#9AFAFF"/>
+    <rect x="168" y="54" width="16" height="136" rx="8" fill="#FFD87F"/>
+    <rect x="198" y="36" width="16" height="172" rx="8" fill="#93FBFF"/>
+    <path d="M52 123C52 92.0721 77.0721 67 108 67" stroke="#A6FCFF" stroke-width="12" stroke-linecap="round"/>
+    <path d="M52 123C52 153.928 77.0721 179 108 179" stroke="#6BE6FF" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <g fill="url(#og-text)" font-family="'Avenir Next Condensed','Helvetica Neue',Arial,sans-serif">
+    <text x="416" y="182" font-size="102" font-weight="700" letter-spacing="4">VibeVoice</text>
+    <text x="422" y="248" font-size="30" font-weight="600" letter-spacing="12">OPEN-SOURCE FRONTIER VOICE AI</text>
+    <text x="422" y="350" font-size="56" font-weight="700">60-minute ASR</text>
+    <text x="422" y="416" font-size="56" font-weight="700">Realtime TTS</text>
+    <text x="422" y="482" font-size="56" font-weight="700">Research TTS Archive</text>
+  </g>
+  <g fill="#B6C4E0" font-family="'IBM Plex Mono','Menlo',monospace" font-size="24" letter-spacing="4">
+    <text x="424" y="560">vibevoice.lol</text>
+    <text x="770" y="560">ASR / Realtime / TTS</text>
+  </g>
+</svg>
