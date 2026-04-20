@@ -72,7 +72,7 @@ jobs:
           content = path.read_text()
           updated, count = re.subn(
               r"(^\s*newTag:\s*).*$",
-              rf"\1{os.environ['IMAGE_TAG']}",
+              rf"\g<1>{os.environ['IMAGE_TAG']}",
               content,
               count=1,
               flags=re.MULTILINE,
@@ -94,4 +94,3 @@ jobs:
           fi
           git commit -m "chore: release vibevoice ${IMAGE_TAG}"
           git push origin HEAD:main
-
